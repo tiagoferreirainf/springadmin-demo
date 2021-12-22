@@ -1,0 +1,19 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: adminserver
+  boot:
+    admin:
+      client:
+        api-path: /actuator
+
+management:
+  security:
+    enabled: false
+
+monitor:
+  default-timeout: 60000
+  status-interval: 15000
+  status-lifetime: 15000
