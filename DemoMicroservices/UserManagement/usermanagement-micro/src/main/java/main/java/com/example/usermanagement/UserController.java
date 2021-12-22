@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserController {
 
-    private final UserMongoRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserMongoRepository userRepository) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "getuserids", method = RequestMethod.GET)
-    public List<String> getUserIds() {
+    public List<Long> getUserIds() {
         log.info("Getting all users ids.");
 
         List<User> allUsers = userRepository.findAll();
@@ -61,7 +61,7 @@ public class UserController {
             throw new Exception("Invalid User Entity");
         }
 
-        Optional<User> byId = userRepository.findById(id);
+        Optional<User> byId = userRepository.findById(Long.parseLong(id));
         return byId.orElse(null);
     }
 
@@ -74,7 +74,7 @@ public class UserController {
             throw new Exception("Invalid User Entity");
         }
 
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userRepository.findById(Long.parseLong(id));
         user.ifPresent(userRepository::delete);
     }
 

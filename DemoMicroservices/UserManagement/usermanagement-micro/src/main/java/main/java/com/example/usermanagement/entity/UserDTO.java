@@ -13,6 +13,5 @@ import java.util.Map;
 public class UserDTO {
     private String name;
     private String birthdate;
-    private Map<String, String> userSettings;
     private String address;
 }

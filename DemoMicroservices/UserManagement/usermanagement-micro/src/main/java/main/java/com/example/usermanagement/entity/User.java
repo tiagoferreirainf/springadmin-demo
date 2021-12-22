@@ -1,8 +1,7 @@
 package main.java.com.example.usermanagement.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.*;
 
 import java.util.Date;
 import java.util.Map;
@@ -14,13 +13,19 @@ import java.util.Map;
 @ToString
 @EqualsAndHashCode
 @Builder
-@Document(collection = "users")
+@Entity
+@Table(name = "user")
 public class User {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique=true, nullable=false, precision=10)
+    private Long id;
+
     private String name;
+
     private Date birthdate;
+
     private Date creationDate = new Date();
-    private Map<String, String> userSettings;
+
     private String address;
 }

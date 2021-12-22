@@ -13,7 +13,6 @@ public class UserMapper {
 
     public static User mapUserDTOToUser(UserDTO dto) throws ParseException {
         return User.builder().address(dto.getAddress())
-                .userSettings(dto.getUserSettings())
                 .name(dto.getName())
                 .creationDate(new Date())
                 .birthdate(convertDateFromString(dto.getBirthdate())).build();

@@ -36,5 +36,9 @@ public class UserValidations {
     public static boolean userIdIsValid(String id){
         return id != null && !id.equals("");
     }
+
+    public static boolean userIdIsValid(Long id){
+        return id != null;
+    }
 }
 
