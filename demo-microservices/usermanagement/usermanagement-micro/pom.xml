@@ -10,9 +10,10 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>tf.k8straining</groupId>
+	<groupId>tf.springadmindemo</groupId>
 	<artifactId>usermanagement</artifactId>
 	<version>1.0-SNAPSHOT</version>
+
 	<name>UserManagement</name>
 	<description>Simple UserManagement microservice in Spring Boot for k8s training</description>
 

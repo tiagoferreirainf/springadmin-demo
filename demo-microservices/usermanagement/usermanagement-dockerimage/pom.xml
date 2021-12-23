@@ -1,27 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
-        <relativePath/>
-    </parent>
 
-    <groupId>org.example</groupId>
-    <artifactId>userdocker</artifactId>
+    <groupId>tf.springadmindemo</groupId>
+    <artifactId>usermanagement-dockerimage</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>springadminserver-dockerimage</name>
+    <description>Spring Admin Server project for k8s testing</description>
+
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
         <spotify.dockerfile.version>1.4.13</spotify.dockerfile.version>
+
+        <application.groupId>tf.springadmindemo</application.groupId>
+        <application.artifactId>usermanagement</application.artifactId>
         <application.version>1.0-SNAPSHOT</application.version>
+
         <dockerio.registry>tiagoferreira2018</dockerio.registry>
-        <dockerio.name>usermngdemo</dockerio.name>
+        <dockerio.name>usermanagement</dockerio.name>
+
+        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
     </properties>
 
     <build>
@@ -29,7 +33,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${maven-dependency-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy</id>
@@ -40,8 +44,8 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>tf.k8straining</groupId>
-                                    <artifactId>usermanagement</artifactId>
+                                    <groupId>${application.groupId}</groupId>
+                                    <artifactId>${application.artifactId}</artifactId>
                                     <version>${application.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>

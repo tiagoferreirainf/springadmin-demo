@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: adminserver
+  profiles:
+    active: ${RUN_MODE:tst}
   boot:
     admin:
       client:
