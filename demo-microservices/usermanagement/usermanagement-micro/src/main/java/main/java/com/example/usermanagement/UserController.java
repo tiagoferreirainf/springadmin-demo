@@ -26,19 +26,26 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = "getusers", method = RequestMethod.GET)
+    @RequestMapping(value = "get/all", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         log.info("Getting all users.");
         return userRepository.findAll();
     }
 
-    @RequestMapping(value = "getuserids", method = RequestMethod.GET)
-    public List<Long> getUserIds() {
+    @RequestMapping(value = "get/ids", method = RequestMethod.GET)
+    public List<String> getUserIds() {
         log.info("Getting all users ids.");
 
         List<User> allUsers = userRepository.findAll();
         return allUsers.stream().map(User::getId).collect(Collectors.toList());
     }
+
+    @GetMapping("/get/name/{name}")
+    public List<User> getUserDetailsByName(@PathVariable("name") @NonNull String name) {
+        log.info("Get users by name {} ", name);
+        return userRepository.findUserByName(name);
+    }
+
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public User addNewUsers(@RequestBody @NonNull UserDTO dto) throws Exception {
@@ -61,7 +68,7 @@ public class UserController {
             throw new Exception("Invalid User Entity");
         }
 
-        Optional<User> byId = userRepository.findById(Long.parseLong(id));
+        Optional<User> byId = userRepository.findById(id);
         return byId.orElse(null);
     }
 
@@ -74,7 +81,7 @@ public class UserController {
             throw new Exception("Invalid User Entity");
         }
 
-        Optional<User> user = userRepository.findById(Long.parseLong(id));
+        Optional<User> user = userRepository.findById(id);
         user.ifPresent(userRepository::delete);
     }
 

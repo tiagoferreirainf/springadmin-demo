@@ -1,10 +1,12 @@
 package main.java.com.example.usermanagement.entity;
 
 import lombok.*;
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import java.util.Date;
-import java.util.Map;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,13 +15,11 @@ import java.util.Map;
 @ToString
 @EqualsAndHashCode
 @Builder
-@Entity
-@Table(name = "user")
+
+@Document("User")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique=true, nullable=false, precision=10)
-    private Long id;
+    private String id;
 
     private String name;
 

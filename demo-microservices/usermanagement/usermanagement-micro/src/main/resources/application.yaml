@@ -1,10 +1,12 @@
 api:
   version: v1
 
+#swagger available at http://localhost:8080/swagger-ui/index.html -> /v3/api-docs
+
 logging:
   level:
     root: INFO
-    org.springframework.web: DEBUG
+    org.springframework.web: INFO
   folder: ./logs
 
 eureka:
@@ -20,31 +22,10 @@ eureka:
 spring:
   application:
     name: 'usermanagement'
-  datasource:
-    url: jdbc:h2:mem:user
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    properties:
-      hibernate:
-        ddl-auto: update
-        dialect: org.hibernate.dialect.H2Dialect
-    show-sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2
-  boot:
-    admin:
-      client:
-        enabled: false
-        url: ${SPRING_ADMIN_SERVER_URL:http://localhost:8082}
-        connect-timeout: 30000
-        read-timeout: 30000
-        instance:
-          prefer-ip: true
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/User"
+      database: "User"
 
 management:
   endpoints:
