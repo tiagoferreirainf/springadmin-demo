@@ -13,7 +13,7 @@
     <artifactId>builder-eureka-server</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>eurekaserver-dockerimage</name>
+    <name>builder-eureka-server</name>
     <description>Spring Admin Server project for k8s testing</description>
     <packaging>pom</packaging>
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>builder-mongodb</artifactId>
+        <groupId>tf.springadmindemo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mongodb-helmchart</artifactId>
+
+    <properties>
+
+        <helm-maven-plugin.chartName>mongodb</helm-maven-plugin.chartName>
+        <helm-maven-plugin.valuesFile>src/main/helm/mongodb/values.yaml</helm-maven-plugin.valuesFile>
+
+        <dockerio.name>mongo</dockerio.name>
+        <!--suppress UnresolvedMavenProperty -->
+        <dockerio.tag>4.2</dockerio.tag>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.deviceinsight.helm</groupId>
+                <artifactId>helm-maven-plugin</artifactId>
+                <version>${helm-maven-plugin.version}</version>
+                <configuration>
+                    <chartName>${helm-maven-plugin.chartName}</chartName>
+                    <helmVersion>${helm-maven-plugin.helmVersion}</helmVersion>
+                    <strictLint>true</strictLint>
+                    <valuesFile>${helm-maven-plugin.valuesFile}</valuesFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                            <goal>lint</goal>
+                            <goal>template</goal>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

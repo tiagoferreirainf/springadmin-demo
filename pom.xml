@@ -69,6 +69,7 @@
         <module>eureka-server</module>
         <module>springadmin-server</module>
         <module>demo-microservices/usermanagement</module>
+        <module>mongodb-server</module>
     </modules>
 
 </project>

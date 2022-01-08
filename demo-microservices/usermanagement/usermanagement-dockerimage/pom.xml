@@ -11,7 +11,7 @@
 
     <artifactId>usermanagement-dockerimage</artifactId>
 
-    <name>springadminserver-dockerimage</name>
+    <name>usermanagement-dockerimage</name>
     <description>Spring Admin Server project for k8s testing</description>
 
 

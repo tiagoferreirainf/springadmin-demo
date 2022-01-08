@@ -11,7 +11,7 @@
 
 	<artifactId>usermanagement</artifactId>
 
-	<name>UserManagement</name>
+	<name>usermanagement</name>
 	<description>Simple UserManagement microservice in Spring Boot for k8s training</description>
 
 	<dependencies>
