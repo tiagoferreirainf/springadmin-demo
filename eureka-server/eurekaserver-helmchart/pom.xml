@@ -22,8 +22,7 @@
 		<helm-maven-plugin.valuesFile>src/main/helm/eurekaserver/values.yaml</helm-maven-plugin.valuesFile>
 
 		<dockerio.name>eurekaserver</dockerio.name>
-		<!--suppress UnresolvedMavenProperty -->
-		<dockerio.tag>${project.vesion}</dockerio.tag>
+		<dockerio.tag>${parent.version}</dockerio.tag>
 	</properties>
 
 	<build>

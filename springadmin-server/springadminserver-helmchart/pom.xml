@@ -22,8 +22,7 @@
 		<helm-maven-plugin.valuesFile>src/main/helm/springadminserver/values.yaml</helm-maven-plugin.valuesFile>
 
 		<dockerio.name>springadminserver</dockerio.name>
-		<!--suppress UnresolvedMavenProperty -->
-		<dockerio.tag>${project.vesion}</dockerio.tag>
+		<dockerio.tag>${parent.version}</dockerio.tag>
 	</properties>
 
 	<build>

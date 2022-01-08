@@ -20,8 +20,7 @@
 		<helm-maven-plugin.valuesFile>src/main/helm/usermanagement/values.yaml</helm-maven-plugin.valuesFile>
 
 		<dockerio.name>springadmin-demo-usermanagement</dockerio.name>
-		<!--suppress UnresolvedMavenProperty -->
-		<dockerio.tag>${project.vesion}</dockerio.tag>
+		<dockerio.tag>${parent.version}</dockerio.tag>
 	</properties>
 
 	<build>
