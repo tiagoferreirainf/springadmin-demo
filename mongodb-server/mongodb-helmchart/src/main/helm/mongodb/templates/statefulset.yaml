@@ -1,16 +1,20 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "springadminserver.fullname" . }}
+  name: {{ include "mongoserver.fullname" . }}
   labels:
-    {{- include "springadminserver.labels" . | nindent 4 }}
+    {{- include "mongoserver.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "springadminserver.selectorLabels" . | nindent 6 }}
+      {{- include "mongoserver.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "mongoserver.fullname" . }}
+  podManagementPolicy: "OrderedReady"
+  updateStrategy:
+    type: "RollingUpdate"
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +22,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "springadminserver.selectorLabels" . | nindent 8 }}
+        {{- include "mongoserver.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "springadminserver.serviceAccountName" . }}
+      serviceAccountName: {{ include "mongoserver.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -35,16 +39,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: {{ .Values.container.port }}
               protocol: TCP
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -59,3 +70,13 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: mongodb-data
+      spec:
+        storageClassName: {{ .Values.volumeclaim.storageClass }}
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{ .Values.volumeclaim.size }}
