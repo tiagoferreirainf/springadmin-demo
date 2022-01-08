@@ -4,25 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.7</version>
-		<relativePath/>
+		<groupId>tf.springadmindemo</groupId>
+		<artifactId>builder-usermanagement</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>tf.springadmindemo</groupId>
 	<artifactId>usermanagement</artifactId>
-	<version>1.0-SNAPSHOT</version>
 
 	<name>UserManagement</name>
 	<description>Simple UserManagement microservice in Spring Boot for k8s training</description>
-
-	<properties>
-		<java.version>1.8</java.version>
-		<mapstruct.version>1.4.2.Final</mapstruct.version>
-		<lombok.version>1.18.22</lombok.version>
-		<springdoc-openapi-ui.version>1.6.1</springdoc-openapi-ui.version>
-	</properties>
 
 	<dependencies>
 
@@ -51,18 +41,21 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>${springdoc-openapi-ui.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>${mapstruct.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
 		<dependency>
@@ -72,6 +65,18 @@
 		</dependency>
 
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

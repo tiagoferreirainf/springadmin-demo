@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.8</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>tf.springadmindemo</groupId>
+    <artifactId>builder-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <!-- java version -->
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- plugis versions  -->
+        <helm-maven-plugin.version>2.10.0</helm-maven-plugin.version>
+        <helm-maven-plugin.helmVersion>3.7.2</helm-maven-plugin.helmVersion>
+
+        <spotify.dockerfile.version>1.4.13</spotify.dockerfile.version>
+        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+
+        <!-- dependencies version -->
+        <spring-boot-admin-starter-server.version>2.5.5</spring-boot-admin-starter-server.version>
+        <spring-cloud.version>2020.0.5</spring-cloud.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <lombok.version>1.18.22</lombok.version>
+        <springdoc-openapi-ui.version>1.6.1</springdoc-openapi-ui.version>
+
+        <!-- project properties -->
+        <dockerio.registry>tiagoferreira2018</dockerio.registry>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin-starter-server.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <modules>
+        <module>eureka-server</module>
+        <module>springadmin-server</module>
+        <module>demo-microservices/usermanagement</module>
+    </modules>
+
+</project>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>builder-eureka-server</artifactId>
+		<groupId>tf.springadmindemo</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>eurekaserver-dockerimage</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>eurekaserver-dockerimage</name>
+	<description>Spring Admin Server project for k8s testing</description>
+
+
+	<properties>
+		<application.groupId>tf.springadmindemo</application.groupId>
+		<application.artifactId>eurekaserver</application.artifactId>
+		<application.version>1.0-SNAPSHOT</application.version>
+
+		<dockerio.name>eurekaserver</dockerio.name>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven-dependency-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${application.groupId}</groupId>
+									<artifactId>${application.artifactId}</artifactId>
+									<version>${application.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+									<destFileName>app.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>${spotify.dockerfile.version}</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>${dockerio.registry}/${dockerio.name}</repository>
+					<tag>${project.version}</tag>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

@@ -4,14 +4,20 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>tf.springadmindemo</groupId>
+    <parent>
+        <groupId>tf.springadmindemo</groupId>
+        <artifactId>builder-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
     <artifactId>builder-usermanagement</artifactId>
-    <version>0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>usermanagement-micro</module>
         <module>usermanagement-dockerimage</module>
+        <module>usermanagement-helmchart</module>
     </modules>
 </project>

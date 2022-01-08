@@ -1,4 +1,5 @@
-FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk11:alpine
+
 ARG JAR_FILE=target/dependency/app.jar
 
 RUN apk upgrade --update && \

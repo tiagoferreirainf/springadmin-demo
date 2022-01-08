@@ -4,26 +4,26 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-	<groupId>tf.springadmindemo</groupId>
+	<parent>
+		<groupId>tf.springadmindemo</groupId>
+		<artifactId>builder-springadminserver</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
 	<artifactId>adminserver-helmchart</artifactId>
-	<version>1.0-SNAPSHOT</version>
 
 	<name>springadminserver-helmchart</name>
 	<description>Spring Admin Server project for k8s testing</description>
 
 
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<helm-maven-plugin.version>2.10.0</helm-maven-plugin.version>
-		<helm-maven-plugin.helmVersion>3.5.1</helm-maven-plugin.helmVersion>
 		<helm-maven-plugin.chartName>springadminserver</helm-maven-plugin.chartName>
 		<helm-maven-plugin.valuesFile>src/main/helm/springadminserver/values.yaml</helm-maven-plugin.valuesFile>
 
-		<dockerio.registry>tiagoferreira2018</dockerio.registry>
 		<dockerio.name>springadminserver</dockerio.name>
-		<dockerio.tag>1.0-SNAPSHOT</dockerio.tag>
+		<!--suppress UnresolvedMavenProperty -->
+		<dockerio.tag>${project.vesion}</dockerio.tag>
 	</properties>
 
 	<build>
@@ -51,6 +51,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

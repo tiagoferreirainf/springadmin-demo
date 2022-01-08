@@ -7,7 +7,19 @@ logging:
     org.springframework.web: DEBUG
   folder: ./logs
 
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 20
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8085}/eureka/
+
 spring:
+  application:
+    name: 'usermanagement'
   datasource:
     url: jdbc:h2:mem:user
     driverClassName: org.h2.Driver
@@ -27,7 +39,7 @@ spring:
   boot:
     admin:
       client:
-        enabled: true
+        enabled: false
         url: ${SPRING_ADMIN_SERVER_URL:http://localhost:8082}
         connect-timeout: 30000
         read-timeout: 30000
