@@ -22,7 +22,7 @@
 		<helm-maven-plugin.valuesFile>src/main/helm/eurekaserver/values.yaml</helm-maven-plugin.valuesFile>
 
 		<dockerio.name>eurekaserver</dockerio.name>
-		<dockerio.tag>${parent.version}</dockerio.tag>
+		<dockerio.tag>${project.parent.version} </dockerio.tag>
 	</properties>
 
 	<build>

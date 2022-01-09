@@ -20,7 +20,7 @@
 		<helm-maven-plugin.valuesFile>src/main/helm/taxmanagement/values.yaml</helm-maven-plugin.valuesFile>
 
 		<dockerio.name>taxmanagement</dockerio.name>
-		<dockerio.tag>${parent.version}</dockerio.tag>
+		<dockerio.tag>${project.parent.version} </dockerio.tag>
 	</properties>
 
 	<build>

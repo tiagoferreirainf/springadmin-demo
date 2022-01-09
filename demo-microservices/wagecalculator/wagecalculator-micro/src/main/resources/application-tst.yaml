@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_SERVICE_URL}
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL}/eureka/
+logging:
+  folder: /var/log/
+  file:
+    name: /var/log/sample-boot-application.log
