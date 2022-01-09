@@ -68,7 +68,8 @@
     <modules>
         <module>eureka-server</module>
         <module>springadmin-server</module>
-        <module>demo-microservices/usermanagement</module>
+        <module>demo-microservices/taxmanagement</module>
+        <module>demo-microservices/wagecalculator</module>
         <module>mongodb-server</module>
     </modules>
 

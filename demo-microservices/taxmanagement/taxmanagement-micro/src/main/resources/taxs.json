@@ -1,0 +1,44 @@
+[
+  {
+    "minValue": 0,
+    "maxValue": 7112,
+    "level": 1,
+    "tax": 14.5
+  },
+  {
+    "minValue": 7113,
+    "maxValue": 10732,
+    "level": 2,
+    "tax": 23.0
+  },
+  {
+    "minValue": 10733,
+    "maxValue": 20322,
+    "level": 3,
+    "tax": 28.5
+  },
+  {
+    "minValue": 20323,
+    "maxValue": 25075,
+    "level": 4,
+    "tax": 35.0
+  },
+  {
+    "minValue": 25076,
+    "maxValue": 36967,
+    "level": 5,
+    "tax":37.0
+  },
+  {
+    "minValue": 36968,
+    "maxValue": 80882,
+    "level": 6,
+    "tax": 45.0
+  },
+  {
+    "minValue": 80883,
+    "maxValue": 2147483647,
+    "level": 7,
+    "tax": 48.0
+  }
+]

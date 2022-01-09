@@ -1,0 +1,40 @@
+api:
+  version: v1
+
+#swagger available at http://localhost:8080/swagger-ui/index.html -> /v3/api-docs
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+  folder: ./logs
+
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 20
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8085}/eureka/
+
+spring:
+  profiles:
+    active: ${RUN_MODE:tst}
+  application:
+    name: 'taxmanagement'
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/wages"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    metrics:
+      enabled: true
