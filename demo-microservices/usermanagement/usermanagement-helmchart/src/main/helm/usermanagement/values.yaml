@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: ${dockerio.registry}/${dockerio.name}
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ${dockerio.tag}
 
@@ -39,6 +39,13 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+
+container:
+  port: 8080
+  envs:
+    eurekaurl: http://eureka-eurekaserver:8085
+    eurekaname: eurekaserver
+    mongodb: mongodb://mongo-mongodb:27017/User
 
 ingress:
   enabled: false

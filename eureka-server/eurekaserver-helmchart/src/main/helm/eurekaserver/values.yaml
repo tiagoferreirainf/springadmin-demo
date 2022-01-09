@@ -38,10 +38,12 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  portui: 8085
+  portregister: 8761
 
 container:
-  port: 8085
+  portui: 8085
+  portregister: 8761
 
 ingress:
   enabled: false

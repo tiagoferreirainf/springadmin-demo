@@ -11,7 +11,7 @@ logging:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${EUREKA_HOSTNAME:localhost}
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 20
@@ -20,12 +20,13 @@ eureka:
       defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8085}/eureka/
 
 spring:
+  profiles:
+    active: ${RUN_MODE:tst}
   application:
     name: 'usermanagement'
   data:
     mongodb:
       uri: "mongodb://localhost:27017/User"
-      database: "User"
 
 management:
   endpoints:

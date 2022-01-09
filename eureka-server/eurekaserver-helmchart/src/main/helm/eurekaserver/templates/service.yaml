@@ -7,9 +7,13 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.portui }}
       targetPort: http
       protocol: TCP
       name: http
+    - port: {{ .Values.service.portregister }}
+      targetPort: http-register
+      protocol: TCP
+      name:  http-register
   selector:
     {{- include "eurekaserver.selectorLabels" . | nindent 4 }}
