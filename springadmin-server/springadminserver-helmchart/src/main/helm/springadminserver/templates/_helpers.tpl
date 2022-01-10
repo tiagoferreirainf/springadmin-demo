@@ -60,3 +60,11 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Defines the credential secret
+*/}}
+{{- define "springadminserver.credentialsecret" -}}
+credential-{{ template "springadminserver.fullname" . }}
+{{- end -}}

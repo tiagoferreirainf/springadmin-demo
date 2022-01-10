@@ -36,18 +36,38 @@ spec:
           env:
             - name: EUREKA_SERVICE_URL
               value: {{ .Values.container.envs.eurekaurl | quote }}
+            - name: DEFAULT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "springadminserver.credentialsecret" . }}
+                  key: username
+            - name: DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "springadminserver.credentialsecret" . }}
+                  key: password
           ports:
             - name: http
               containerPort: {{ .Values.container.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /actuator/health/liveness
+              path: /actuator/health
               port: http
+            initialDelaySeconds: 45
+            periodSeconds: 30
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /actuator/health/readiness
+              path: /actuator/health
               port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

@@ -4,8 +4,10 @@ server:
 spring:
   application:
     name: adminserver
-  profiles:
-    active: ${RUN_MODE:tst}
+  security:
+    user:
+      name: ${DEFAULT_USERNAME:admin}
+      password: ${DEFAULT_PASSWORD:admin}
   boot:
     admin:
       client:
@@ -17,6 +19,8 @@ eureka:
     health-check-url-path: /actuator/health
     metadata-map:
       startup: ${random.int}    #needed to trigger info and endpoint update after restart
+      user.name: ${DEFAULT_USERNAME:admin}
+      user.password: ${DEFAULT_PASSWORD:admin}
   client:
     registryFetchIntervalSeconds: 5
     register-with-eureka: true
