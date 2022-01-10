@@ -1,4 +1,4 @@
-# Demo: SpringAdmin + Eureka
+# Demo: SpringAdmin + Eureka  (WIP)
 POC project to explore the capabilities of SpringAdmin and Eureka service discovery in a kubernetes environment
 
 ## Requirements:
@@ -20,12 +20,18 @@ This project will generate 4 docker images and 4 helm charts
 ### Docker images:
 - SpringAdmin - Server of SpringAdmin prepared to startup and expose port 8082.
 - Eureka - Server of Eureka prepared to startup and expose port 8082.
-- UserManagement - Demo microservice 1 to test servers capabilities.
-- XXXXXXX - Demo microservice 2 to test servers capabilities.
+- TaxManagement - Demo microservice with Tax CRUDs.
+- WageCalculator - Demo microservice to calculate net salary.
 
 ### Helm charts:
 - SpringAdmin - Helm chart with necessary configuration to run SpringAdmin Server.
 - Eureka - Helm chart with necessary configuration to run Eureka Server.
-- UserManagement - Helm chart with necessary configuration to run demo microservice Usermanagement.
-- XXXXXXX - Helm chart with necessary configuration to run demo microservice XXXXXXX.
+- TaxManagement - Helm chart with necessary configuration to run demo microservice TaxManagement.
+- WageCalculator - Helm chart with necessary configuration to run demo microservice WageCalculator.
 - MongoDB - Helm chart with necessary configuration to run a MongoDB database.
+
+## Functional Review
+
+## Installation Procedure
+
+## Testing 
